@@ -1,3 +1,5 @@
+import { ProductsGrid } from "@/components/ProductsGrid";
+
 export default function ProductsPage() {
-  return <main className="products-page" />;
+  return <ProductsGrid />;
 }
