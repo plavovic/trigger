@@ -7,7 +7,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 export default function Home() {
   return (
     <SmoothScroll>
-      <main className="min-h-screen">
+      <main id="top" className="min-h-screen">
         <FrameSequenceStory />
         <ProductsCarousel />
         <FAQSection />

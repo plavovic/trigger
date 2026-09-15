@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { ScrollFrameSequence, type ScrollFrameSequenceHandle } from "@/components/ScrollFrameSequence";
 import { FRAME_COUNT } from "@/lib/frameSequence";
 
@@ -64,9 +65,15 @@ export function FrameSequenceStory() {
           className="sequence-canvas"
         />
         <div className="story-shade" aria-hidden="true" />
-        <nav className="story-nav" aria-label="Product navigation">
-          <img className="story-brand" src="/logo.png" alt="Triger logo" />
-          <span className="story-nav-label">BOILIE / 001</span>
+        <nav className="story-nav" aria-label="Main navigation">
+          <Link className="story-brand-link" href="/#top" aria-label="Triger home">
+            <img className="story-brand" src="/logo.png" alt="Triger logo" />
+          </Link>
+          <div className="story-nav-links">
+            <Link href="/about">ABOUT</Link>
+            <Link href="/products">PRODUCTS</Link>
+            <Link href="/cart">CART</Link>
+          </div>
         </nav>
         <div
           className="story-hero-copy"
