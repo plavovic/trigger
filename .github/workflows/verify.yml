@@ -1,0 +1,31 @@
+name: Verify storefront
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            backend/package-lock.json
+      - run: npm ci
+      - run: npm ci --prefix backend
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+        env:
+          API_BACKEND_URL: http://localhost:4000
+      - run: npm run typecheck
+      - run: npm run build:api
+      - name: Real PostgreSQL migrations and API tests
+        run: PG_BIN="$(pg_config --bindir)" npm run test:api
+        env:
+          TEST_FRONTEND_PROXY: '1'
+      - run: npm audit --omit=dev
+      - run: npm audit --omit=dev --prefix backend

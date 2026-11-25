@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import * as React from "react";
 
 // Define the ToastActionElement type

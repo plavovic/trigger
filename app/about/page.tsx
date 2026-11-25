@@ -1,5 +1,7 @@
+"use client";
 import Globe, { type GlobeMarker } from "@/components/lightswind/globe";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
+import { useLanguage } from "@/components/LanguageProvider";
 
 const markers: GlobeMarker[] = [
   { location: [37.7749, -122.4194], size: 0.05, name: "San Francisco" },
@@ -11,27 +13,28 @@ const markers: GlobeMarker[] = [
 ];
 
 export default function AboutPage() {
+  const { language } = useLanguage();
+  const german = language === "de";
   return (
     <main className="collection-page blank-page">
       <SiteHeader />
       <section className="about-hero" aria-labelledby="about-title">
         <div className="about-copy">
-          <p className="about-kicker">ABOUT TRIGER</p>
+          <p className="about-kicker">{german ? "ÜBER TRIGER" : "ABOUT TRIGER"}</p>
           <h1 id="about-title">
-            Made for the <span>moment</span> before the strike.
+            {german ? <>Für den <span>Moment</span> vor dem Biss gemacht.</> : <>Made for the <span>moment</span> before the strike.</>}
           </h1>
           <p className="about-description">
-            Triger makes hard-working lures for anglers who follow the water,
-            trust their instincts, and stay out for one more cast.
+            {german ? "Triger entwickelt leistungsstarke Köder für Angler, die dem Wasser folgen, ihren Instinkten vertrauen und noch einen Wurf machen." : "Triger makes hard-working lures for anglers who follow the water, trust their instincts, and stay out for one more cast."}
           </p>
           <div className="about-details">
             <p>
               <strong>01</strong>
-              Designed in motion
+              {german ? "In Bewegung entwickelt" : "Designed in motion"}
             </p>
             <p>
               <strong>02</strong>
-              Tested worldwide
+              {german ? "Weltweit getestet" : "Tested worldwide"}
             </p>
           </div>
         </div>

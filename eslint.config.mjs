@@ -12,7 +12,17 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "backend/dist/**",
+    "backend/node_modules/**",
   ]),
+  {
+    files: ["**/*.cjs", "frame-sequence.test.js", "lib/frameSequence.js"],
+    rules: { "@typescript-eslint/no-require-imports": "off" },
+  },
+  {
+    files: ["backend/**/*.ts"],
+    rules: { "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }] },
+  },
 ]);
 
 export default eslintConfig;
